@@ -1,8 +1,15 @@
+//Accessing Elements
+
 const root = document.getElementById("root");
 const result = document.getElementById("result1");
 const button = document.getElementById("button");
+
+//Using Audio Object for playing sounds
+
 const tick = new Audio("tick.wav");
 const complete=new Audio("completed.mp3");
+
+//Arrays of values
 
 const gifts = ["₹100 Cash",
     "Toy Car",
@@ -56,6 +63,8 @@ const gifts = ["₹100 Cash",
     "₹5000 Cash"
 ];
 
+//Adding Event Listener When button clicked
+
 button.addEventListener("click",()=>{
     for(let i=1;i<=50;i++){
         document.getElementById(i).classList.remove("winnedbox");
@@ -63,13 +72,19 @@ button.addEventListener("click",()=>{
     result.classList.add("before-result");
     result.innerText="Please Wait a moment....!";
     let setCount = 0;
+
+    // Setting Time interval for creating excitement 
    const intervalId= setInterval(() => {
+
+    //Playing sounds When required
     tick.pause();
     tick.currentTime=0;
     tick.play();
         setCount = setCount+1;
       const notify= Math.floor(Math.random()*50);
       const notify1 = notify+1;
+
+      //Adding styles to random boxes
       for(let i=1;i<=50;i++){
         if(i === notify1){
             document.getElementById(i).classList.add("hilightedbox");
@@ -77,6 +92,8 @@ button.addEventListener("click",()=>{
             document.getElementById(i).classList.remove("hilightedbox");
         }
     }
+
+    //Adding styles to winning box 
       if(setCount === 10){
         tick.pause();
         const randValue = Math.floor(Math.random()*50);
@@ -93,6 +110,7 @@ button.addEventListener("click",()=>{
     }, 500);
 })
 
+// Adding elements on UI by dynamically
 
 gifts.forEach((values,i)=>{
    root.insertAdjacentHTML("beforeend",`<div class="box" id="${i+1}">${i+1}.${values}</div>`);
